@@ -1,11 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+import api from './api/axiosConfig.js';
+import Layout from './components/Layout.jsx';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/home/Home.jsx';
+import Header from './components/header/Header.jsx';
 
 function App() {
+    const [movies, setMovies] = useState([]);
+    const getMovies = async () => {
+        const response = await api.get('api/v1/movies');
+        console.log(response.data);
+        setMovies(response.data);
+    };
+
+    useEffect(() => {
+        getMovies();
+    }, []);
+
     return (
-        <>
-            <h1>MOVIE APP</h1>
-        </>
+        <div className='App'>
+            <Header />
+            <Routes>
+                <Route path='/' element={<Layout />}>
+                    <Route path='/' element={<Home movies={movies} />}></Route>
+                </Route>
+            </Routes>
+        </div>
     );
 }
 
