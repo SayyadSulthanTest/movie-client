@@ -1,7 +1,7 @@
 /* using the dynamic image from the movie object */
-:root {
+/* :root {
     --img: url(${movie.backdrops[0]});
-}
+} */
 
 .movie-carousel-container{
     width: 100vw;
@@ -31,8 +31,9 @@
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: var(--img);
-  /* background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1), var("--img")); */
+  /* background-image: var(--img); */
+  /* setting the variable from the Hero.jsx */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), var(--img);
 }
 
 .movie-detail{
@@ -47,4 +48,40 @@
     color: white;
     display: flex;
     align-items: center;
+}
+
+.movie-button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+}
+
+.play-button-icon-container{
+    padding: 0px;
+    margin: 0px;
+    width: 150px;
+}
+
+.play-button-icon{
+    padding: 0px;
+    margin: 0px;
+    color: gold;
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.play-button-icon:hover{
+    font-size: 4rem;
+    color: white;
+}
+
+@media only screen and (max-width: 880px) {
+    .movie-detail{
+        flex-direction: column;
+        align-items: center;
+        top: 20px;
+    }
+    
 }
